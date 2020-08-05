@@ -1,0 +1,31 @@
+
+DBNEWID: Release 18.0.0.0.0 - Production on Wed Jul 15 10:39:46 2020
+
+Copyright (c) 1982, 2018, Oracle and/or its affiliates.  All rights reserved.
+
+Connected to database ORASLOB (DBID=3459279874)
+
+Connected to server version 18.3.0
+
+Control Files in database:
+    /u02/oradata/ORASLOB/control01.ctl
+    /u03/fast_recovery_area/ORASLOB/control02.ctl
+
+Changing database name from ORASLOB to DEVSLOB
+    Control File /u02/oradata/ORASLOB/control01.ctl - modified
+    Control File /u03/fast_recovery_area/ORASLOB/control02.ctl - modified
+    Datafile /u02/oradata/ORASLOB/system01.db - wrote new name
+    Datafile /u02/oradata/ORASLOB/sysaux01.db - wrote new name
+    Datafile /u02/oradata/ORASLOB/undotbs01.db - wrote new name
+    Datafile /u02/oradata/ORASLOB/iops.db - wrote new name
+    Datafile /u02/oradata/ORASLOB/users01.db - wrote new name
+    Datafile /u02/oradata/ORASLOB/temp01.db - wrote new name
+    Control File /u02/oradata/ORASLOB/control01.ctl - wrote new name
+    Control File /u03/fast_recovery_area/ORASLOB/control02.ctl - wrote new name
+    Instance shut down
+
+Database name changed to DEVSLOB.
+Modify parameter file and generate a new password file before restarting.
+Succesfully changed database name.
+DBNEWID - Completed succesfully.
+
