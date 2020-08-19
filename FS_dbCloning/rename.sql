@@ -13,6 +13,10 @@ select 'alter database rename file '''||
         name||''' to '''||
         substr(name,1,instr(name,'ORASLOB')-1) ||'DEVSLOB'||substr(name,instr(name,'ORASLOB')+7) ||''';'
   from v$datafile;
+select 'alter database rename file '''||
+        name||''' to '''||
+        substr(name,1,instr(name,'ORASLOB')-1) ||'DEVSLOB'||substr(name,instr(name,'ORASLOB')+7) ||''';'
+  from v$tempfile;
 select 'alter database rename file '''||member||''' to '''||
        substr(member,1,instr(member,'ORASLOB')-1) ||'DEVSLOB'||substr(member,instr(member,'ORASLOB')+7) ||''';'
   from v$logfile;
