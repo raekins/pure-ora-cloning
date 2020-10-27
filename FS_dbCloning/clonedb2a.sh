@@ -63,23 +63,25 @@ clear
 echo " "
 echo " High level Steps "
 echo " "
-echo " 1. Gather user inputs for validation "
+echo " 1. Shutdown Target database"
+eco " "
+echo " 2. Gather user inputs for validation "
 echo " "
-echo " 2. Unmount the filesystem on target server (if mounted)"
+echo " 3. Unmount the filesystem on target server (if mounted)"
 echo " "
-echo " 3. Take snapshot of the source volumes on Pure"
+echo " 4. Take snapshot of the source volumes on Pure"
 echo " "
-echo " 4. Mount the cloned volumes on target server"
+echo " 5. Mount the cloned volumes on target server"
 echo " "
-echo " 5. Bring up the database on target server in mount mode"
+echo " 6. Bring up the database on target server in mount mode"
 echo " "
-echo " 6. Change the database name using nid"
+echo " 7. Change the database name using nid"
 echo " "
-echo " 7. Rename the directories on cloned database "
+echo " 8. Rename the directories on cloned database "
 echo " "
-echo " 8. Bring up the database & change filenames"
+echo " 9. Bring up the database & change filenames"
 echo " "
-echo " 9. Validate the records on cloned database "
+echo "10. Validate the records on cloned database "
 echo " "
 echo " "
 echo " "
@@ -87,11 +89,14 @@ echo -e "Press Enter to continue \c"
 read key
 clear
 echo " "
-echo "Step 1:  Gather User inputs for validation"
+echo "Setp 1: Shutdown Target database"
+echo " "
+./1_shutdown.sh
+echo "Step 2:  Gather User inputs for validation"
 echo " "
 echo "         Enter user data into Source DB   "
 echo "        "
-./1_insrec.sh
+./2_insrec.sh
 echo " "
 echo -e "Press Enter to continue \c"
 read key
@@ -100,40 +105,40 @@ date '+%m/%d/%Y %H:%M:%S'
 sdate=$(date +"%s")
 echo "Unmounting filesystems...."
 echo " "
-./2_unmountfs.sh
+./3_unmountfs.sh
 echo " "
 date "+%m/%d/%Y %H:%M:%S"
-echo "Taking snapshot of oraslob volumes"
-./3_puresnap.sh
+echo "Taking snapshot of Source volumes"
+./4_puresnap.sh
 echo " "
 date "+%m/%d/%Y %H:%M:%S"
 echo "Mounting filesystems ..."
-./4_mountfs.sh
+./5_mountfs.sh
 echo " "
 date "+%m/%d/%Y %H:%M:%S"
-echo "Open the database in z-oracle2 and set it to mount mode"
+echo "Open the database on Target server and set it to mount mode"
 echo " "
-./5_startup.sh
+./6_startup.sh
 echo " "
 date "+%m/%d/%Y %H:%M:%S"
 echo "Invoking nid to change the database name"
-./6_dbnewid.sh
+./7_dbnewid.sh
 echo " "
 date "+%m/%d/%Y %H:%M:%S"
-echo "Rename the directories to devslob"
-./7_renfs.sh
+echo "Rename the database directories"
+./8_renfs.sh
 echo " " 
 date "+%m/%d/%Y %H:%M:%S"
-echo "Bring up the devslob database and change filenames"
+echo "Bring up the target database and change filenames"
 echo " "
-./8_rendbfiles.sh
+./9_rendbfiles.sh
 echo " "
 edate=$(date +"%s")
 echo -e "Press Enter to continue \c"
 read key
 clear
 echo "Validate the records"
-./9_showrec.sh
+./10_showrec.sh
 echo " "
 date "+%m/%d/%Y %H:%M:%S"
 echo " "
@@ -141,6 +146,3 @@ echo " "
 ddiff=$(($edate-$sdate))
 echo "Total Time: $(($ddiff / 60)) minutes and $(( $ddiff % 60 )) seconds"
 echo " "
-echo -e "Press Enter to continue \c"
-read key
-./0_shutdown.sh &
